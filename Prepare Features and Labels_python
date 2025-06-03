@@ -1,0 +1,11 @@
+# Predict the next day's price
+df['Target'] = df['Close'].shift(-1)
+
+# Drop the last row (it has no label)
+df.dropna(inplace=True)
+
+X = df[['Close']].values
+y = df['Target'].values
+
+# Split into train and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
